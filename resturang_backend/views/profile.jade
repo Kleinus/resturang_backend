@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  h1 Profile
+
+  form(id="profile-form", action="/profile", method="post")
+    div    
+        input(id="test", type="text", placeholder="Enter First Name", name="first_name", value=first_name, required)
+        input(id="test", type="text", placeholder="Enter Last Name", name="last_name", value=last_name, required)
+    
+     div    
+        input(type="text", placeholder="Enter Username", name="username", value=username, required)
+        input(type="text", placeholder="Enter Email", name="email", value=email, required)
+    
+    div
+        input(id="password", type="password", placeholder="New Password", name="password", required)
+        input(id="confirm-password", type="password", placeholder="Confirm new Password", required)
+    div
+        input(type="password", placeholder="Old password", name="old_password", required)
+    div
+        button(type="submit") Save
+    p= errorMsg
+
+    script.
+        var password = document.getElementById("password")
+        var confirm_password = document.getElementById("confirm-password");
+
+        function validatePassword(){
+            if(password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;

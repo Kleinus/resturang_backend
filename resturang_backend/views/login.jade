@@ -1,0 +1,13 @@
+extends layout2
+
+block content
+    h1 Om du inte har något konto var vänlig och registrera dig
+        link(href='stylesheets/style.css' rel='stylesheet' type='text/css' )
+    form(action="/login", method="post")
+        input(type="text", placeholder="Enter Username", name="username", required)
+        input(type="password", placeholder="Enter Password", name="password", required)
+        button(type="submit") Login
+    p= errorMsgn
+    
+    a(href="/register") registrera dig här
+ 

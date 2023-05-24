@@ -1,0 +1,24 @@
+extends layout2 
+
+block content
+    form(action="/register", method="post")
+        input(type="text", placeholder="Enter Username", name="username", required)
+        input(id="password", type="password", placeholder="Enter Password", name="password", required)
+        input(id="confirm-password", type="password", placeholder="Enter Password", name="confirm-password", required)
+        button(type="submit") Register
+    p= errorMsg
+
+    script.
+        var password = document.getElementById("password")
+        var confirm_password = document.getElementById("confirm-password");
+
+        function validatePassword(){
+            if(password.value != confirm_password.value) {
+                confirm_password.setCustomValidity("Passwords Don't Match");
+            } else {
+                confirm_password.setCustomValidity('');
+            }
+        }
+
+        password.onchange = validatePassword;
+        confirm_password.onkeyup = validatePassword;
